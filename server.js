@@ -8,22 +8,11 @@ const app = express();
 
 // CORS sozlamalarini aniqlash
 app.use(cors({
-    origin: (origin, callback) => {
-      const allowedOrigins = [
-        "http://localhost:5174",  // 1-chi frontend manzili
-        "http://localhost:5173",  // 1-chi frontend manzili
-        "http://localhost:5175",  // 1-chi frontend manzili
-      ];
-      
-      if (allowedOrigins.includes(origin)) {
-        callback(null, true);  // Ruxsat berish
-      } else {
-        callback(new Error("Not allowed by CORS"));  // Ruxsat bermaslik
-      }
-    },
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"]
+    origin: "*",  // Barcha domenlardan kelgan so'rovlarga ruxsat berish
+    methods: ["GET", "POST", "PUT", "DELETE"],  // Ruxsat berilgan metodlar
+    allowedHeaders: ["Content-Type", "Authorization"]  // Ruxsat berilgan header'lar
   }));
+  
   
 
 app.use(express.json()); // express.json() body-parser o‘rniga
